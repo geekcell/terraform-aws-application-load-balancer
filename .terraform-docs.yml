@@ -20,7 +20,7 @@ content: |-
   {{- end }}
 
   # Examples
-    ### Full
+    ### Basic Example
     ```hcl
     {{ include "examples/basic-example/main.tf" }}
     ```
