@@ -69,7 +69,7 @@ resource "aws_lb_listener" "main" {
 module "sg" {
   count = var.enable_security_group ? 1 : 0
 
-  source = "github.com/geekcell/terraform-aws-security-group?ref=v1.0"
+  source = "github.com/geekcell/terraform-aws-security-group?ref=main"
 
   vpc_id = data.aws_subnet.main.vpc_id
   name   = "${var.name}-alb"
