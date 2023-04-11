@@ -79,6 +79,8 @@ preconfigured solution for high availability and scalability.
 | Name | Description |
 |------|-------------|
 | <a name="output_arn"></a> [arn](#output\_arn) | ARN of the Application Load Balancer |
+| <a name="output_arn_suffix"></a> [arn\_suffix](#output\_arn\_suffix) | The ARN suffix for use with CloudWatch Metrics. |
+| <a name="output_dns_name"></a> [dns\_name](#output\_dns\_name) | The DNS name of the load balancer. |
 | <a name="output_http_to_https_listener_arn"></a> [http\_to\_https\_listener\_arn](#output\_http\_to\_https\_listener\_arn) | ARN of the HTTP to HTTPS listener |
 | <a name="output_security_group"></a> [security\_group](#output\_security\_group) | Security group ID of the Application Load Balancer |
 
