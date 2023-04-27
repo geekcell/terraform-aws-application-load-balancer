@@ -33,4 +33,5 @@ jobs:
           go-version-file: 'go.mod'
 
       - name: Run Tests
+        working-directory: test
         run: go test -v -timeout 30m

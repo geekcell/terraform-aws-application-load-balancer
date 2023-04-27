@@ -33,7 +33,7 @@ func TestTerraformALBBasicExample(t *testing.T) {
 	dns_name := terraform.Output(t, terraformOptions, "dns_name")
 	assert.NotEmpty(t, dns_name)
 
-	sess, err := NewSession(os.Getenv("AWS_DEFAULT_REGION"))
+	sess, err := NewSession(os.Getenv("AWS_REGION"))
 	assert.NoError(t, err)
 
 	lbClient := elbv2.New(sess)
