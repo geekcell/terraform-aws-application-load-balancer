@@ -1,4 +1,4 @@
-name: Validate
+name: Test
 on:
   pull_request:
   push:
@@ -15,6 +15,6 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: arn:aws:iam::${{ env.AWS_TESTING_ACCOUNT_ID }}:role/${{ env.AWS_TESTING_ROLE }}
-          aws-region: ${{ env.AWS_TESTING_REGION }}
+          role-to-assume: arn:aws:iam::${{ vars.AWS_TESTING_ACCOUNT_ID }}:role/${{ vars.AWS_TESTING_ROLE }}
+          aws-region: ${{ vars.AWS_TESTING_REGION }}
           mask-aws-account-id: false
