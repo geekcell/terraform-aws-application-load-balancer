@@ -20,7 +20,7 @@ func TestTerraformALBBasicExample(t *testing.T) {
 		TerraformDir: "../examples/basic-example",
 	})
 
-	// 	defer terraform.Destroy(t, terraformOptions)
+	defer terraform.Destroy(t, terraformOptions)
 
 	terraform.InitAndApply(t, terraformOptions)
 
