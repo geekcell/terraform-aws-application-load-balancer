@@ -1,6 +1,18 @@
+module "vpc" {
+  source  = "registry.terraform.io/terraform-aws-modules/vpc/aws"
+  version = "~> 3.19"
+
+  name           = "main"
+  cidr           = "10.100.0.0/16"
+  azs            = ["us-east-1a", "us-east-1b"]
+  public_subnets = ["10.100.10.0/24", "10.100.11.0/24"]
+}
+
 module "basic-example" {
   source = "../../"
 
   name    = "my-lb"
-  subnets = ["subnet-123", "subnet-456", "subnet-789"]
+  subnets = module.vpc.public_subnets
+
+  enable_security_group_default_http_https_rule = true
 }
