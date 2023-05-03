@@ -10,6 +10,10 @@ permissions:
   id-token: write
   contents: read
 
+concurrency:
+  group: ${{ github.repository }}
+  cancel-in-progress: false
+
 jobs:
   test:
     name: Terraform Tests
