@@ -47,6 +47,15 @@ func TestTerraformALBBasicExample(t *testing.T) {
 	assert.Equal(t, 2, len(output.LoadBalancers[0].AvailabilityZones))
 	assert.Equal(t, 1, len(output.LoadBalancers[0].SecurityGroups))
 
+	// Once we've confirmed the LB exists, make sure to disable delete protection
+	modifyInput := &elbv2.ModifyLoadBalancerAttributesInput{
+		LoadBalancerArn: aws.String(arn),
+		Attributes: []*elbv2.LoadBalancerAttribute{
+			{Key: aws.String("deletion_protection.enabled"), Value: aws.String("false")},
+		},
+	}
+	lbClient.ModifyLoadBalancerAttributes(modifyInput)
+
 	lInput := &elbv2.DescribeListenersInput{LoadBalancerArn: &arn}
 	lOutput, err := lbClient.DescribeListeners(lInput)
 	assert.NoError(t, err)
