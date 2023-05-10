@@ -83,6 +83,7 @@ preconfigured solution for high availability and scalability.
 | <a name="output_dns_name"></a> [dns\_name](#output\_dns\_name) | The DNS name of the load balancer. |
 | <a name="output_http_to_https_listener_arn"></a> [http\_to\_https\_listener\_arn](#output\_http\_to\_https\_listener\_arn) | ARN of the HTTP to HTTPS listener |
 | <a name="output_security_group"></a> [security\_group](#output\_security\_group) | Security group ID of the Application Load Balancer |
+| <a name="output_zone_id"></a> [zone\_id](#output\_zone\_id) | The canonical hosted zone ID of the load balancer (to be used in a Route 53 Alias record) |
 
 ## Providers
 

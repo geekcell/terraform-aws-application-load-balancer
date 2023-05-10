@@ -22,3 +22,8 @@ output "security_group" {
   description = "Security group ID of the Application Load Balancer"
   value       = try(module.sg[0].security_group_id, null)
 }
+
+output "zone_id" {
+  description = "The canonical hosted zone ID of the load balancer (to be used in a Route 53 Alias record)"
+  value       = aws_lb.main.zone_id
+}
