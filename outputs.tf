@@ -15,7 +15,7 @@ output "dns_name" {
 
 output "http_to_https_listener_arn" {
   description = "ARN of the HTTP to HTTPS listener"
-  value       = var.enable_http_to_https_redirect ? aws_lb_listener.main[0].arn : null
+  value       = try(aws_lb_listener.main[0].arn, null)
 }
 
 output "security_group" {
