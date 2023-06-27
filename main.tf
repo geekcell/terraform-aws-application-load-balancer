@@ -38,7 +38,7 @@ resource "aws_lb" "main" {
 
     content {
       bucket  = var.access_logs_bucket_id
-      prefix  = ""
+      prefix  = var.access_logs_bucket_prefix
       enabled = true
     }
   }
@@ -69,12 +69,14 @@ resource "aws_lb_listener" "main" {
 module "sg" {
   count = var.enable_security_group ? 1 : 0
 
-  source = "github.com/geekcell/terraform-aws-security-group?ref=main"
+  source  = "geekcell/security-group/aws"
+  version = ">= 1.0.0, < 2.0.0"
 
   vpc_id = data.aws_subnet.main.vpc_id
   name   = "${var.name}-alb"
 
-  ingress_rules = !var.enable_security_group_default_http_https_rule ? [] : [
+  egress_rules = var.security_group_egress_rules
+  ingress_rules = concat(var.security_group_ingress_rules, var.enable_security_group_default_http_https_rule ? [
     {
       protocol    = "tcp"
       port        = 80
@@ -85,7 +87,7 @@ module "sg" {
       port        = 443
       cidr_blocks = ["0.0.0.0/0"]
     }
-  ]
+  ] : [])
 
   tags = var.tags
 }
