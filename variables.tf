@@ -17,6 +17,12 @@ variable "access_logs_bucket_id" {
   type        = string
 }
 
+variable "access_logs_bucket_prefix" {
+  default     = ""
+  description = "The S3 bucket prefix. Logs are stored in the root if not configured."
+  type        = string
+}
+
 variable "customer_owned_ipv4_pool" {
   default     = null
   description = "The ID of the customer owned ipv4 pool to use for this load balancer."
@@ -112,4 +118,16 @@ variable "enable_security_group_default_http_https_rule" {
   description = "Whether to create a default security group rule to allow HTTP and HTTPS traffic from anywhere."
   default     = false
   type        = bool
+}
+
+variable "security_group_ingress_rules" {
+  description = "A list of CIDR blocks to allow ingress traffic from."
+  default     = []
+  type        = any
+}
+
+variable "security_group_egress_rules" {
+  description = "A list of CIDR blocks to allow ingress traffic from."
+  default     = []
+  type        = any
 }
