@@ -1,22 +1,36 @@
-name: Test
+---
+###############
+## Run tests ##
+###############
 
+#
+# Documentation:
+# https://help.github.com/en/articles/workflow-syntax-for-github-actions
+#
+
+name: Test
 on:
   pull_request:
-  workflow_dispatch:
   push:
     branches: [ main ]
+
+##########################
+# Prevent duplicate jobs #
+##########################
+concurrency:
+  group: ${{ github.repository }}
+  cancel-in-progress: false
 
 permissions:
   id-token: write
   contents: read
 
-concurrency:
-  group: ${{ github.repository }}
-  cancel-in-progress: false
-
+###############
+# Run the job #
+###############
 jobs:
-  test:
-    name: Tests
+  terratest:
+    name: Terratest
     runs-on: ubuntu-latest
     steps:
       ############################
